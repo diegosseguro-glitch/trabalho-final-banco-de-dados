@@ -83,7 +83,7 @@ senha varchar NOT NULL
 
 ---Deve ser inserido, um mínimo de, 10 registros em cada tabela (INSERT);
 
-INSERT INTO clinicabd.usuario (nome_atendentente, email, login, senha)
+INSERT INTO clinicabd.atendente (nome_atendentente, email, login, senha)
 VALUES
 ('usuario 1', 'usuario1@email.com', 'usu@rio1', '123456'),
 ('usuario 2', 'usuario2@email.com', 'usu@rio2', '987456'),
