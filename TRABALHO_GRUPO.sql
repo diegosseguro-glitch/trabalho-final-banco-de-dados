@@ -5,7 +5,7 @@ CREATE DATABASE Clinica_Odontologica;
 CREATE SCHEMA clinicabd;
 
 -- Criação da tabela paciente
-CREATE TABLE clinicabd.paciente; 
+CREATE TABLE clinicabd.paciente(
 
 idpaciente SERIAL PRIMARY KEY NOT NULL,
 nome_completo VARCHAR (100),
