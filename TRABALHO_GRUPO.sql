@@ -2,7 +2,7 @@
 CREATE DATABASE Clinica_Odontologica;
 
 -- Criação do schema
-CREATE TABLE clinicabd;
+CREATE TABLE schema;
 
 -- Criação da tabela paciente
 CREATE TABLE clinicabd.paciente (
