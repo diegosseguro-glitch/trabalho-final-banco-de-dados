@@ -6,8 +6,8 @@ Este projeto descreve a modelagem e o desenvolvimento de um sistema de banco de 
 
 # Modelo Conceitual
 
-![Modelo Conceitual](./modelo-conceitual.jpeg)
+![Modelo Conceitual](./modelo-conceitual1.jpeg)
 
 # Modelo Lógico 
 
-![Modelo Logico](./modelo-logico.jpeg)
+![Modelo Logico](./modelo-logico1.jpeg)
