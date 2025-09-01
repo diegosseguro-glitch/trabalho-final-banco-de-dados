@@ -1,8 +1,10 @@
---CREATE DATABASE Clinica_Odontologica;
+-- Criação da data base
+CREATE DATABASE Clinica_Odontologica;
 
---CREATE SCHEMA clinicabd;
+-- Criação do schema
+CREATE TABLE clinicabd;
 
-
+-- Criação da tabela paciente
 CREATE TABLE clinicabd.paciente (
 
 idpaciente SERIAL PRIMARY KEY NOT NULL,
@@ -16,7 +18,7 @@ hist_consult VARCHAR(100)
 
 );
 
-
+-- Criação da tabela dentista
 CREATE TABLE clinicabd.dentista (
 
 iddentista SERIAL PRIMARY KEY,
@@ -28,6 +30,7 @@ hr_atend TIME
 
 );
 
+-- Criação da tabela procedimento
 CREATE TABLE clinicabd.procedimentos (
 idprocedimento SERIAL PRIMARY KEY,
 nome VARCHAR(100) NOT NULL,
@@ -36,6 +39,7 @@ duracao_media_minutos INT NOT NULL
 
 );
 
+-- Criação da tabela consulta
 CREATE TABLE clinicabd.consultas (
 idconsulta SERIAL PRIMARY KEY,
 paciente_id INT NOT NULL,
@@ -47,6 +51,7 @@ FOREIGN KEY (paciente_id) REFERENCES clinicabd.paciente(idpaciente),
 FOREIGN KEY (dentista_id) REFERENCES clinicabd.dentista(iddentista)
 );
 
+--Criação da tabela procedimento
 CREATE TABLE consulta_procedimentos (
 consulta_id INT NOT NULL,
 procedimento_id INT NOT NULL,
@@ -55,6 +60,7 @@ FOREIGN KEY (consulta_id) REFERENCES clinicabd.consultas(idconsulta),
 FOREIGN KEY (procedimento_id) REFERENCES clinicabd.procedimentos(idprocedimento)
 );
 
+--Criação da tabela horário_dentista
 CREATE TABLE clinicabd.horarios_dentista (
 id SERIAL PRIMARY KEY,
 dentista_id INT NOT NULL,
@@ -64,8 +70,32 @@ hora_fim TIME NOT NULL,
 FOREIGN KEY (dentista_id) REFERENCES clinicabd.dentista(iddentista)
 );
 
+-- Criação da tabela atendente
+CREATE TABLE clinicabd.atendente(
+
+idusuario serial NOT NULL,
+nome_atendentente varchar (100) NOT NULL,
+email varchar (100) NOT NULL,
+login varchar (100) UNIQUE NOT NULL,
+senha varchar NOT NULL
+);
+
 
 ---Deve ser inserido, um mínimo de, 10 registros em cada tabela (INSERT);
+
+INSERT INTO clinicabd.usuario (nome_atendentente, email, login, senha)
+VALUES
+('usuario 1', 'usuario1@email.com', 'usu@rio1', '123456'),
+('usuario 2', 'usuario2@email.com', 'usu@rio2', '987456'),
+('usuario 3', 'usuario3@email.com', 'usu@rio3', '456789'),
+('usuario 4', 'usuario4@email.com', 'usu@rio4', '741258'),
+('usuario 5', 'usuario5@email.com', 'usu@rio5', '936852'),
+('usuario 6', 'usuario6@email.com', 'usu@rio6', '159753'),
+('usuario 7', 'usuario7@email.com', 'usu@rio7', '920365'),
+('usuario 8', 'usuario8@email.com', 'usu@rio8', '741369'),
+('usuario 9', 'usuario9@email.com', 'usu@rio9', '987521'),
+('usuario 10', 'usuario10@email.com', 'usu@rio10', '145263');
+
 
 
 INSERT INTO clinicabd.paciente (nome_completo, cpf, data_nasc, telefone, email, endereco, hist_consult) VALUES
@@ -137,17 +167,16 @@ SELECT * FROM clinicabd.paciente WHERE cpf = '22222222222';
 
 CREATE INDEX idx_consultas_data_hora ON clinicabd.consultas (data_hora);
 SELECT * FROM clinicabd.consultas WHERE data_hora = '2025-09-01 09:00:00';
-
 ---SQL de 3 atualizações de registros com condições em alguma tabela.
 
 UPDATE clinicabd.paciente
 SET telefone = '222223333', email = 'novo.email5@email.com', endereco ='Rua Z, 55'
-WHERE idpaciente = 5;
+WHERE idpaciente = 35;
 
 
 ---SQL de 3 exclusão de registros com condições em alguma tabela.
 
-DELETE FROM clinicabd.consultas WHERE paciente_id = 10;
+DELETE FROM clinicabd.paciente WHERE idpaciente = 4;
 DELETE FROM clinicabd.consultas WHERE paciente_id = 3;
 DELETE FROM clinicabd.consultas WHERE paciente_id = 2;
 
@@ -217,7 +246,7 @@ JOIN
 ORDER BY
     c.data_hora DESC;
 
--- Colsulta View
+-- Consulta View
 SELECT * FROM clinicabd.consultas_ordenadas_por_data;
 
 --- 4a - View com lista de consultas ordenadas por data:
@@ -232,6 +261,6 @@ FROM (
     GROUP BY
         c.dentista_id
 ) AS contagem_por_dentista;
+	
 
 select * from clinicabd.paciente
-
