@@ -169,14 +169,14 @@ CREATE INDEX idx_consultas_data_hora ON clinicabd.consultas (data_hora);
 SELECT * FROM clinicabd.consultas WHERE data_hora = '2025-09-01 09:00:00';
 ---SQL de 3 atualizações de registros com condições em alguma tabela.
 
-DELETE FROM clinicabd.consultas WHERE paciente_id = 4;
+UPDATE clinicabd.paciente
 SET telefone = '222223333', email = 'novo.email5@email.com', endereco ='Rua Z, 55'
 WHERE idpaciente = 35;
 
 
 ---SQL de 3 exclusão de registros com condições em alguma tabela.
 
-DELETE FROM clinicabd.paciente WHERE idpaciente = 4;
+DELETE FROM clinicabd.consultas WHERE paciente_id = 4;
 DELETE FROM clinicabd.consultas WHERE paciente_id = 3;
 DELETE FROM clinicabd.consultas WHERE paciente_id = 2;
 
